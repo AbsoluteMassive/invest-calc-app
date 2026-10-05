@@ -1,5 +1,6 @@
 import Header from "./componets/Header";
 import logo from "../src/assets/investLogo.png";
+import UserInput from "./componets/UserInput";
 function App() {
   return (
     <div>
@@ -11,6 +12,9 @@ function App() {
       >
         <p>Welcome to the Investment Calculator!</p>
       </Header>
+      <main>
+        <UserInput />
+      </main>
     </div>
   );
 }
