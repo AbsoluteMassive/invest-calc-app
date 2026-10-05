@@ -1,51 +1,24 @@
 import { useState } from "react";
 
-const UserInput = () => {
-  const [userInput, setUserInput] = useState({
-    initialInvestment: 10000,
-    annualInvestment: 1200,
-    expectedReturn: 6,
-    duration: 10,
-  });
+const UserInput = ({ userInput, onUserInputChange }) => {
   const [currency, setCurrency] = useState("USD");
   const currencySymbols = {
     USD: "$",
     EUR: "€",
     GBP: "£",
   };
-  /*const [userInput, setUserInput] = useState(() => {
-    const storedUserInput = localStorage.getItem("userInput");
-    return storedUserInput
-      ? JSON.parse(storedUserInput)
-      : {
-          initialInvestment: 10000,
-          annualInvestment: 1200,
-          expectedReturn: 6,
-          duration: 10,
-        };
-  });
-
-  useEffect(() => {
-    localStorage.setItem("userInput", JSON.stringify(userInput));
-  }, [userInput]); */
 
   const handleChange = (inputIdentifier, newValue) => {
-    setUserInput((prevUserInput) => ({
-      ...prevUserInput,
-      //"+newValue" to ensure it's treated as a number
-      [inputIdentifier]: +newValue,
-    }));
+    onUserInputChange(inputIdentifier, newValue);
   };
   const handleReset = () => {
     if (confirm("Are you sure you want to reset the form?")) {
-      setUserInput({
-        initialInvestment: 10000,
-        annualInvestment: 1200,
-        expectedReturn: 6,
-        duration: 10,
-      });
-      setCurrency("USD");
+      onUserInputChange("initialInvestment", 10000);
+      onUserInputChange("annualInvestment", 1200);
+      onUserInputChange("expectedReturn", 6);
+      onUserInputChange("duration", 10);
     }
+    setCurrency("USD");
   };
   const handleSubmit = (e) => {
     e.preventDefault();
