@@ -58,6 +58,7 @@ const UserInput = () => {
       alert("Please enter valid positive values for all fields.");
       return;
     }
+    console.log("Form submitted", userInput, currency);
   };
   return (
     <section id="user-input">
