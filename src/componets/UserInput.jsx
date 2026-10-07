@@ -5,6 +5,7 @@ const UserInput = ({
   onReset,
   currency,
   setCurrency,
+  error,
 }) => {
   const currencySymbols = {
     USD: "$",
@@ -34,6 +35,7 @@ const UserInput = ({
             Initial Investment ({currencySymbols[currency]})
           </label>
           <input
+            onWheel={(e) => e.currentTarget.blur()}
             type="number"
             id="initialInvestment"
             value={userInput.initialInvestment}
@@ -45,6 +47,7 @@ const UserInput = ({
             Annual Investment ({currencySymbols[currency]})
           </label>
           <input
+            onWheel={(e) => e.currentTarget.blur()}
             type="number"
             id="annualInvestment"
             value={userInput.annualInvestment}
@@ -54,6 +57,7 @@ const UserInput = ({
         <div className="input-group">
           <label htmlFor="expectedReturn">Expected Return (%)</label>
           <input
+            onWheel={(e) => e.currentTarget.blur()}
             type="number"
             id="expectedReturn"
             value={userInput.expectedReturn}
@@ -63,12 +67,14 @@ const UserInput = ({
         <div className="input-group">
           <label htmlFor="duration">Duration (years)</label>
           <input
+            onWheel={(e) => e.currentTarget.blur()}
             type="number"
             id="duration"
             value={userInput.duration}
             onChange={(e) => handleChange("duration", e.target.value)}
           />
         </div>
+        {error && <p className="error-message">{error}</p>}
         <div className="btn-group">
           <button className="btn" type="button" onClick={onReset}>
             Reset

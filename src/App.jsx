@@ -4,7 +4,20 @@ import UserInput from "./componets/UserInput";
 import Output from "./componets/Output";
 import { calculateInvestmentResults } from "./util/inv";
 import { useState } from "react";
+import { useEffect } from "react";
 function App() {
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "true";
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark-mode", darkMode);
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+  };
   const [userInput, setUserInput] = useState({
     initialInvestment: 10000,
     annualInvestment: 1200,
@@ -13,21 +26,33 @@ function App() {
   });
   const [resultData, setResultData] = useState([]);
   const [error, setError] = useState(null);
+
   const [currency, setCurrency] = useState("USD");
   const [submittedCurrency, setSubmittedCurrency] = useState("USD");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      +userInput.initialInvestment <= 0 ||
-      +userInput.annualInvestment <= 0 ||
-      +userInput.expectedReturn <= 0 ||
-      +userInput.duration <= 0
-    ) {
-      setError("Please enter valid positive values for all fields.");
+    const initial = +userInput.initialInvestment;
+    const annual = +userInput.annualInvestment;
+    const expectedReturn = +userInput.expectedReturn;
+    const duration = +userInput.duration;
+
+    if (initial < 0 || annual < 0 || expectedReturn < 0 || duration < 0) {
+      setError("Values cannot be negative.");
       return;
     }
-    if (+userInput.duration > 100) {
+
+    if (initial === 0 && annual === 0) {
+      setError("Enter an initial investment or an annual investment.");
+      return;
+    }
+
+    if (expectedReturn <= 0 || duration <= 0) {
+      setError("Expected return and duration must be greater than 0.");
+      return;
+    }
+
+    if (duration > 100) {
       setError("Duration should not exceed 100 years.");
       return;
     }
@@ -77,6 +102,9 @@ function App() {
   };
   return (
     <div>
+      <button id="dark-mode-toggle" onClick={toggleDarkMode}>
+        {darkMode === true ? "Light Mode" : "Dark Mode"}
+      </button>
       <Header
         logoSrc={logo}
         title="Investment Calculator"
@@ -93,8 +121,9 @@ function App() {
           onReset={handleReset}
           currency={currency}
           setCurrency={setCurrency}
+          error={error}
         />
-        {error && <p style={{ color: "red" }}>{error}</p>}
+
         {resultData.length > 0 && (
           <Output resultData={resultData} currency={submittedCurrency} />
         )}
