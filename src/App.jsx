@@ -24,9 +24,15 @@ function App() {
     expectedReturn: 6,
     duration: 10,
   });
-  const [resultData, setResultData] = useState([]);
-  const [error, setError] = useState(null);
+  const [resultData, setResultData] = useState(() => {
+    const storedResultData = localStorage.getItem("resultData");
+    return storedResultData ? JSON.parse(storedResultData) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem("resultData", JSON.stringify(resultData));
+  }, [resultData]);
 
+  const [error, setError] = useState(null);
   const [currency, setCurrency] = useState("USD");
   const [submittedCurrency, setSubmittedCurrency] = useState("USD");
 
@@ -41,17 +47,14 @@ function App() {
       setError("Values cannot be negative.");
       return;
     }
-
     if (initial === 0 && annual === 0) {
       setError("Enter an initial investment or an annual investment.");
       return;
     }
-
     if (expectedReturn <= 0 || duration <= 0) {
       setError("Expected return and duration must be greater than 0.");
       return;
     }
-
     if (duration > 100) {
       setError("Duration should not exceed 100 years.");
       return;
@@ -123,7 +126,6 @@ function App() {
           setCurrency={setCurrency}
           error={error}
         />
-
         {resultData.length > 0 && (
           <Output
             userInput={userInput}
