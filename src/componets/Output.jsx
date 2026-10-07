@@ -67,11 +67,7 @@ const Output = ({ resultData, currency }) => {
           {resultData[resultData.length - 1].investedCapital.toFixed(2)}
         </p>
       </section>
-      <button
-        style={{ margin: "1rem auto", display: "block" }}
-        className="btn"
-        onClick={() => generatepdf({ ...resultData[0], results: resultData })}
-      >
+      <button style={{ margin: "1rem auto", display: "block" }} className="btn">
         Download Report
       </button>
     </div>
