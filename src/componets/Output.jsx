@@ -1,4 +1,4 @@
-const Output = ({ resultData, currency, generatepdf }) => {
+const Output = ({ resultData, currency }) => {
   const currencySymbols = {
     USD: "$",
     EUR: "€",
