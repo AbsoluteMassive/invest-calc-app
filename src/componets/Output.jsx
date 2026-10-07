@@ -1,4 +1,6 @@
-const Output = ({ resultData, currency }) => {
+import { generatepdf } from "../util/generatereport";
+
+const Output = ({ userInput, resultData, currency }) => {
   const currencySymbols = {
     USD: "$",
     EUR: "€",
@@ -67,8 +69,18 @@ const Output = ({ resultData, currency }) => {
           {resultData[resultData.length - 1].investedCapital.toFixed(2)}
         </p>
       </section>
-      <button style={{ margin: "1rem auto", display: "block" }} className="btn">
-        Download Report
+      <button
+        onClick={() =>
+          generatepdf({
+            ...userInput,
+            results: resultData,
+            currency,
+          })
+        }
+        style={{ margin: "1rem auto", display: "block" }}
+        className="btn"
+      >
+        Download Report PDF
       </button>
     </div>
   );

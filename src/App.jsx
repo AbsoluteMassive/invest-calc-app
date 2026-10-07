@@ -125,7 +125,11 @@ function App() {
         />
 
         {resultData.length > 0 && (
-          <Output resultData={resultData} currency={submittedCurrency} />
+          <Output
+            userInput={userInput}
+            resultData={resultData}
+            currency={submittedCurrency}
+          />
         )}
       </main>
     </div>

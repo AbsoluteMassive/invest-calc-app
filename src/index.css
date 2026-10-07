@@ -116,13 +116,14 @@ main {
 }
 /* Output Section */
 .table-container {
-  margin-top: 2rem;
+  margin-top: 1rem;
   width: 100%;
+  max-width: 600px;
 }
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 2rem auto;
+  margin: 1rem auto;
 }
 
 th,
