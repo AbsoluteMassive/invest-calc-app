@@ -115,10 +115,14 @@ main {
   }
 }
 /* Output Section */
+.table-container {
+  margin-top: 2rem;
+  width: 100%;
+}
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 2rem;
+  margin: 2rem auto;
 }
 
 th,
@@ -214,4 +218,12 @@ tr:nth-child(even) {
 }
 .dark-mode #header p {
   color: #f4f4f57c;
+}
+.summary {
+  margin-top: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+.summary p {
+  margin: 0.5rem 0;
 }

@@ -1,4 +1,4 @@
-const Output = ({ resultData, currency }) => {
+const Output = ({ resultData, currency, generatepdf }) => {
   const currencySymbols = {
     USD: "$",
     EUR: "€",
@@ -12,7 +12,7 @@ const Output = ({ resultData, currency }) => {
   );
 
   return (
-    <div>
+    <div className="table-container">
       <table>
         <thead>
           <tr>
@@ -52,6 +52,28 @@ const Output = ({ resultData, currency }) => {
           ))}
         </tbody>
       </table>
+      <section className="summary">
+        <h3>Summary</h3>
+        <p>
+          Total Investment Value: {currencySymbols[currency]}
+          {resultData[resultData.length - 1].investmentValue.toFixed(2)}
+        </p>
+        <p>
+          Total Interest Earned: {currencySymbols[currency]}
+          {resultData[resultData.length - 1].totalInterest.toFixed(2)}
+        </p>
+        <p>
+          Total Invested Capital: {currencySymbols[currency]}
+          {resultData[resultData.length - 1].investedCapital.toFixed(2)}
+        </p>
+      </section>
+      <button
+        style={{ margin: "1rem auto", display: "block" }}
+        className="btn"
+        onClick={() => generatepdf({ ...resultData[0], results: resultData })}
+      >
+        Download Report
+      </button>
     </div>
   );
 };
