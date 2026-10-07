@@ -1,7 +1,11 @@
-import { useState } from "react";
-
-const UserInput = ({ userInput, onUserInputChange }) => {
-  const [currency, setCurrency] = useState("USD");
+const UserInput = ({
+  userInput,
+  onUserInputChange,
+  onSubmit,
+  onReset,
+  currency,
+  setCurrency,
+}) => {
   const currencySymbols = {
     USD: "$",
     EUR: "€",
@@ -11,28 +15,7 @@ const UserInput = ({ userInput, onUserInputChange }) => {
   const handleChange = (inputIdentifier, newValue) => {
     onUserInputChange(inputIdentifier, newValue);
   };
-  const handleReset = () => {
-    if (confirm("Are you sure you want to reset the form?")) {
-      onUserInputChange("initialInvestment", 10000);
-      onUserInputChange("annualInvestment", 1200);
-      onUserInputChange("expectedReturn", 6);
-      onUserInputChange("duration", 10);
-    }
-    setCurrency("USD");
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (
-      userInput.initialInvestment <= 0 ||
-      userInput.annualInvestment <= 0 ||
-      userInput.expectedReturn <= 0 ||
-      userInput.duration <= 0
-    ) {
-      alert("Please enter valid positive values for all fields.");
-      return;
-    }
-    console.log("Form submitted", userInput, currency);
-  };
+
   return (
     <section id="user-input">
       <select
@@ -45,7 +28,7 @@ const UserInput = ({ userInput, onUserInputChange }) => {
         <option value="GBP">GBP (£)</option>
       </select>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <div className="input-group">
           <label htmlFor="initialInvestment">
             Initial Investment ({currencySymbols[currency]})
@@ -87,7 +70,7 @@ const UserInput = ({ userInput, onUserInputChange }) => {
           />
         </div>
         <div className="btn-group">
-          <button className="btn" type="button" onClick={handleReset}>
+          <button className="btn" type="button" onClick={onReset}>
             Reset
           </button>
           <button className="btn" type="submit">

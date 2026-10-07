@@ -114,3 +114,29 @@ main {
     margin: 10px auto;
   }
 }
+/* Output Section */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: right;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.total-interest {
+  font-weight: bold;
+  outline: 2px solid #10c352;
+}
