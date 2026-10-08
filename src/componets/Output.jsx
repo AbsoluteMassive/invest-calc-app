@@ -70,16 +70,16 @@ const Output = ({
       <section className="summary">
         <h3>Summary</h3>
         <p>
+          Total Invested Capital: {currencySymbols[currency]}
+          {resultData[resultData.length - 1].investedCapital.toFixed(2)}
+        </p>
+        <p>
           Total Investment Value: {currencySymbols[currency]}
           {resultData[resultData.length - 1].investmentValue.toFixed(2)}
         </p>
         <p>
           Total Interest Earned: {currencySymbols[currency]}
           {resultData[resultData.length - 1].totalInterest.toFixed(2)}
-        </p>
-        <p>
-          Total Invested Capital: {currencySymbols[currency]}
-          {resultData[resultData.length - 1].investedCapital.toFixed(2)}
         </p>
       </section>
       <button onClick={handleDownload} className="btn2" disabled={isDisabled}>
