@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   display: flex;
   flex-direction: column;
@@ -13,6 +16,8 @@ main {
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  width: 100%;
+  margin: 0 auto;
 }
 /* Header Section */
 #header {
@@ -78,7 +83,8 @@ main {
   gap: 1rem;
   margin-top: 1rem;
 }
-.btn {
+.btn,
+.btn2 {
   padding: 0.5rem 1rem;
   font-weight: bold;
   border: 1px solid #ccc;
@@ -89,11 +95,18 @@ main {
   cursor: pointer;
   transition: transform 0.1s ease;
 }
-.btn:not(:disabled):hover {
+.btn2 {
+  display: block;
+  margin: 1rem auto;
+}
+
+.btn:not(:disabled):hover,
+.btn2:not(:disabled):hover {
   background-color: #e0e0e0;
   transform: scale(1.05);
 }
-.btn:not(:disabled):active {
+.btn:not(:disabled):active,
+.btn2:not(:disabled):active {
   transform: scale(0.95);
 }
 /* mobile responsiveness */
@@ -101,6 +114,12 @@ main {
   .input-group {
     flex-direction: column;
     gap: 0.5rem;
+  }
+  #dark-mode-toggle {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.5rem;
   }
   .input-group input {
     width: 75%;
@@ -115,10 +134,13 @@ main {
   }
 }
 /* Output Section */
-.table-container {
-  margin-top: 1rem;
+.output {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
+}
+.table-container {
+  width: 100%;
+  overflow-x: auto;
 }
 table {
   width: 100%;
@@ -199,12 +221,14 @@ tr:nth-child(even) {
   color: #f4f4f3;
   border: 1px solid #52525b;
 }
-.dark-mode .btn {
+.dark-mode .btn,
+.dark-mode .btn2 {
   background-color: #27272a;
   color: #f4f4f5;
   border: 1px solid #52525b;
 }
-.dark-mode .btn:not(:disabled):hover {
+.dark-mode .btn:not(:disabled):hover,
+.dark-mode .btn2:not(:disabled):hover {
   background-color: #3f3f46;
 }
 .dark-mode th {

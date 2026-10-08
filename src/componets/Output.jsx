@@ -20,46 +20,48 @@ const Output = ({
   );
 
   return (
-    <div className="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Investment Value</th>
-            <th>Interest (Year)</th>
-            <th>Total Interest</th>
-            <th>Invested Capital</th>
-          </tr>
-        </thead>
-        <tbody>
-          {displayedResults.map((yearData, index) => (
-            <tr
-              key={index}
-              className={
-                yearData.year === resultData.length ? "total-interest" : ""
-              }
-            >
-              <td>{yearData.year}</td>
-              <td>
-                {currencySymbols[currency]}
-                {yearData.investmentValue.toFixed(2)}
-              </td>
-              <td>
-                {currencySymbols[currency]}
-                {yearData.interest.toFixed(2)}
-              </td>
-              <td>
-                {currencySymbols[currency]}
-                {yearData.totalInterest.toFixed(2)}
-              </td>
-              <td>
-                {currencySymbols[currency]}
-                {yearData.investedCapital.toFixed(2)}
-              </td>
+    <div className="output">
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Investment Value</th>
+              <th>Interest (Year)</th>
+              <th>Total Interest</th>
+              <th>Invested Capital</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {displayedResults.map((yearData, index) => (
+              <tr
+                key={index}
+                className={
+                  yearData.year === resultData.length ? "total-interest" : ""
+                }
+              >
+                <td>{yearData.year}</td>
+                <td>
+                  {currencySymbols[currency]}
+                  {yearData.investmentValue.toFixed(2)}
+                </td>
+                <td>
+                  {currencySymbols[currency]}
+                  {yearData.interest.toFixed(2)}
+                </td>
+                <td>
+                  {currencySymbols[currency]}
+                  {yearData.totalInterest.toFixed(2)}
+                </td>
+                <td>
+                  {currencySymbols[currency]}
+                  {yearData.investedCapital.toFixed(2)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <section className="summary">
         <h3>Summary</h3>
         <p>
@@ -83,8 +85,7 @@ const Output = ({
             currency,
           })
         }
-        style={{ margin: "1rem auto", display: "block" }}
-        className={isDisabled ? "btn disabled" : "btn"}
+        className="btn2"
         disabled={isDisabled}
       >
         Download Report PDF
