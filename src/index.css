@@ -142,7 +142,11 @@ tr:nth-child(even) {
 }
 .total-interest {
   font-weight: bold;
-  outline: 2px solid #10c352;
+  border: 2px solid #10c352;
+}
+.total-interest td {
+  border-left: 2px solid #10c352;
+  border-right: 2px solid #10c352;
 }
 .error-message {
   color: #b90b0b;
