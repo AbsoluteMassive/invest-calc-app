@@ -33,8 +33,10 @@ function App() {
   }, [resultData]);
 
   const [error, setError] = useState(null);
+  const [buttonError, setButtonError] = useState(null);
   const [currency, setCurrency] = useState("USD");
   const [submittedCurrency, setSubmittedCurrency] = useState("USD");
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,6 +70,8 @@ function App() {
     setError(null);
     setResultData(result);
     setSubmittedCurrency(currency);
+    setIsDisabled(false);
+    setButtonError(null);
   };
   /*const [userInput, setUserInput] = useState(() => {
       const storedUserInput = localStorage.getItem("userInput");
@@ -125,12 +129,16 @@ function App() {
           currency={currency}
           setCurrency={setCurrency}
           error={error}
+          setIsDisabled={setIsDisabled}
+          setButtonError={setButtonError}
         />
         {resultData.length > 0 && (
           <Output
             userInput={userInput}
             resultData={resultData}
             currency={submittedCurrency}
+            isDisabled={isDisabled}
+            buttonError={buttonError}
           />
         )}
       </main>

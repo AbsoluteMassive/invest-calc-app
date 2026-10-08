@@ -6,6 +6,8 @@ const UserInput = ({
   currency,
   setCurrency,
   error,
+  setIsDisabled,
+  setButtonError,
 }) => {
   const currencySymbols = {
     USD: "$",
@@ -15,6 +17,8 @@ const UserInput = ({
 
   const handleChange = (inputIdentifier, newValue) => {
     onUserInputChange(inputIdentifier, newValue);
+    setIsDisabled(true);
+    setButtonError("Please re-submit to download ");
   };
 
   return (

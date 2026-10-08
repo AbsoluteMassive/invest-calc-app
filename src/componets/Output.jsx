@@ -1,6 +1,12 @@
 import { generatepdf } from "../util/generatereport";
 
-const Output = ({ userInput, resultData, currency }) => {
+const Output = ({
+  userInput,
+  resultData,
+  currency,
+  isDisabled,
+  buttonError,
+}) => {
   const currencySymbols = {
     USD: "$",
     EUR: "€",
@@ -78,10 +84,12 @@ const Output = ({ userInput, resultData, currency }) => {
           })
         }
         style={{ margin: "1rem auto", display: "block" }}
-        className="btn"
+        className={isDisabled ? "btn disabled" : "btn"}
+        disabled={isDisabled}
       >
         Download Report PDF
       </button>
+      {buttonError && <p className="error-message">{buttonError}</p>}
     </div>
   );
 };
