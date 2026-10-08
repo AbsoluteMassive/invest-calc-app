@@ -1,5 +1,3 @@
-import { generatepdf } from "../util/generatereport";
-
 const Output = ({
   userInput,
   resultData,
@@ -18,7 +16,14 @@ const Output = ({
       yearData.year % 10 === 0 ||
       yearData.year === resultData.length,
   );
-
+  const handleDownload = async () => {
+    const { generatepdf } = await import("../util/generatereport");
+    generatepdf({
+      ...userInput,
+      results: resultData,
+      currency,
+    });
+  };
   return (
     <div className="output">
       <div className="table-container">
@@ -77,17 +82,7 @@ const Output = ({
           {resultData[resultData.length - 1].investedCapital.toFixed(2)}
         </p>
       </section>
-      <button
-        onClick={() =>
-          generatepdf({
-            ...userInput,
-            results: resultData,
-            currency,
-          })
-        }
-        className="btn2"
-        disabled={isDisabled}
-      >
+      <button onClick={handleDownload} className="btn2" disabled={isDisabled}>
         Download Report PDF
       </button>
       {buttonError && <p className="error-message">{buttonError}</p>}
